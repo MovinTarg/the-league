@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Ninjas Page";
+}
+<div class="left">
+    <h1>Registered Ninjas</h1>
+    @{
+        if(ViewBag.allNinjas.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Ninja Name</th>
+                        <th>Home Dojo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach(var ninja in ViewBag.allNinjas)
+                {
+                    <tr>
+                        <td><a href="ninja/@ninja.Id">@ninja.Name</a></td>
+                        <td><a href="dojo/@ninja.dojo.Id">@ninja.dojo.Name</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {   
+            <h1>Add a Ninja!</h1>
+        }
+    }
+</div>
+<div class="right">
+    <h1>Register A Ninja</h1>
+    @model The_Dojo_League.Models.NinjaViewModel
+    <form asp-controller="Ninja" asp-action="create" method="POST">
+    <div class="form-group">
+        <span asp-validation-for="Name"></span>
+        <label asp-for="Name">Ninja Name:</label>
+        <input class="form-control" asp-for="Name">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="Level"></span>
+        <label asp-for="Level">Ninja Level:</label>
+        <select class="form-control" asp-for="Level">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="dojo"></span>
+        <label asp-for="dojo">Home Dojo:</label>
+        <select class="form-control" asp-for="dojo">
+            @foreach(var dojo in ViewBag.allDojos)
+            {
+            <option value="@dojo.Id">@dojo.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="Description"></span>
+        <label asp-for="Description">Optional Description:</label>
+        <input class="form-control" asp-for="Description">
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>

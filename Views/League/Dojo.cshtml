@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "Dojo Info Page";
+}
+<h1>@ViewBag.Dojo.Name</h1>
+<p>Dojo Location - @ViewBag.Dojo.Location</p>
+<p>Dojo Information - @ViewBag.Dojo.Info</p>
+<div class="left">
+    <h1>Current Members</h1>
+    @{
+        if(ViewBag.Dojo.ninjas.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Ninja Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach(var ninja in ViewBag.Dojo.ninjas)
+                {
+                    <tr>
+                        <td><a href="ninja/@ninja.Id">@ninja.Name</a></td>
+                        <td><a href="dojo/@ViewBag.Dojo.Id/banish/@ninja.Id">Banish!</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {   
+            <h1>Go Recruit a Ninja!</h1>
+        }
+    }
+</div>
+<div class="right">
+    <h1>Rogue Ninjas</h1>
+    @{
+        if(ViewBag.rogueNinjas.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Ninja Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach(var ninja in ViewBag.rogueNinjas)
+                {
+                    <tr>
+                        <td><a href="ninja/@ninja.Id">@ninja.Name</a></td>
+                        <td><a href="dojo/@ViewBag.Dojo.Id/recruit/@ninja.Id">Recruit!</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {   
+            <h1>No Rogue Ninjas!</h1>
+        }
+    }
+</div>

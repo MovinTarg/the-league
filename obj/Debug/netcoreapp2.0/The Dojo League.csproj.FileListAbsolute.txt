@@ -1,0 +1,11 @@
+C:\Users\Pete\Desktop\DojoAssignments\netCore\orms\Dapper\The Dojo League\bin\Debug\netcoreapp2.0\The Dojo League.deps.json
+C:\Users\Pete\Desktop\DojoAssignments\netCore\orms\Dapper\The Dojo League\bin\Debug\netcoreapp2.0\The Dojo League.runtimeconfig.json
+C:\Users\Pete\Desktop\DojoAssignments\netCore\orms\Dapper\The Dojo League\bin\Debug\netcoreapp2.0\The Dojo League.runtimeconfig.dev.json
+C:\Users\Pete\Desktop\DojoAssignments\netCore\orms\Dapper\The Dojo League\bin\Debug\netcoreapp2.0\The Dojo League.dll
+C:\Users\Pete\Desktop\DojoAssignments\netCore\orms\Dapper\The Dojo League\bin\Debug\netcoreapp2.0\The Dojo League.pdb
+C:\Users\Pete\Desktop\DojoAssignments\netCore\orms\Dapper\The Dojo League\obj\Debug\netcoreapp2.0\The Dojo League.csprojResolveAssemblyReference.cache
+C:\Users\Pete\Desktop\DojoAssignments\netCore\orms\Dapper\The Dojo League\obj\Debug\netcoreapp2.0\The Dojo League.csproj.CoreCompileInputs.cache
+C:\Users\Pete\Desktop\DojoAssignments\netCore\orms\Dapper\The Dojo League\obj\Debug\netcoreapp2.0\The Dojo League.AssemblyInfoInputs.cache
+C:\Users\Pete\Desktop\DojoAssignments\netCore\orms\Dapper\The Dojo League\obj\Debug\netcoreapp2.0\The Dojo League.AssemblyInfo.cs
+C:\Users\Pete\Desktop\DojoAssignments\netCore\orms\Dapper\The Dojo League\obj\Debug\netcoreapp2.0\The Dojo League.dll
+C:\Users\Pete\Desktop\DojoAssignments\netCore\orms\Dapper\The Dojo League\obj\Debug\netcoreapp2.0\The Dojo League.pdb
