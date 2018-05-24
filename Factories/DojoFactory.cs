@@ -21,7 +21,7 @@ namespace The_Dojo_League.Factory
                 return new MySqlConnection(connectionString);
             }
         }
-        public List<Dojo> GetAllDojos()
+        public IEnumerable<Dojo> GetAllDojos()
         {
             using(IDbConnection dbConnection = Connection)
             {
@@ -38,7 +38,7 @@ namespace The_Dojo_League.Factory
                 var query =
                 @"
                 SELECT * FROM dojos WHERE Id = @Id;
-                SELECT * FROM ninjas WHERE dojo = @Id;
+                SELECT * FROM ninjas WHERE dojo_id = @Id;
                 ";
                 using (var multi = dbConnection.QueryMultiple(query, new {Id = id}))
                 {
@@ -46,16 +46,6 @@ namespace The_Dojo_League.Factory
                     dojo.ninjas = multi.Read<Ninja>().ToList();
                     return dojo;
                 }
-            }
-        }
-        public IEnumerable<Ninja> RogueNinjas()
-        {
-            using (IDbConnection dbConnection = Connection)
-            {
-                string query = "SELECT * FROM ninjas JOIN dojos ON ninjas.dojo = dojos.Id WHERE Dojos.Id = 1;";
-                dbConnection.Open();
-                var rogueNinjas = dbConnection.Query<Ninja, Dojo, Ninja>(query, (ninja, dojo) => { ninja.dojo = dojo; return ninja; });
-                return rogueNinjas;
             }
         }
         public void AddNewDojo(Dojo dojo)
@@ -71,7 +61,7 @@ namespace The_Dojo_League.Factory
         {
             using (IDbConnection dbConnection = Connection)
             {
-                string query = $"UPDATE ninjas SET dojo = 1 WHERE Id = {ninjaId};";
+                string query = $"UPDATE ninjas SET dojo_id = 1 WHERE Id = {ninjaId};";
                 dbConnection.Open();
                 dbConnection.Execute(query);
             }
@@ -80,7 +70,7 @@ namespace The_Dojo_League.Factory
         {
             using (IDbConnection dbConnection = Connection)
             {
-                string query = $"UPDATE ninjas SET dojo = {dojoId} WHERE Id = {ninjaId};";
+                string query = $"UPDATE ninjas SET dojo_id = {dojoId} WHERE Id = {ninjaId};";
                 dbConnection.Open();
                 dbConnection.Execute(query);
             }

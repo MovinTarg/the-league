@@ -18,8 +18,6 @@ namespace The_Dojo_League.Controllers
             _ninjafactory = new NinjaFactory();
             _dojofactory = new DojoFactory();
         }
-        private readonly NinjaFactory NinjaFactory;
-        private readonly DojoFactory DojoFactory;
         [HttpGet]
         [Route("/ninjas")]
         public IActionResult Ninjas()
@@ -44,12 +42,12 @@ namespace The_Dojo_League.Controllers
         public IActionResult Dojo(int id)
         {
             ViewBag.Dojo = _dojofactory.FindDojo(id);
-            ViewBag.rogueNinjas = _dojofactory.RogueNinjas();
+            ViewBag.rogueNinjas = _ninjafactory.RogueNinjas();
             return View("Dojo");
         }
         [HttpPost]
         [Route("/Ninja/create")]
-        public IActionResult NinjaCreate(NinjaViewModel model)
+        public IActionResult NinjaCreate(Ninja model)
         {
             if (ModelState.IsValid)
             {
@@ -58,17 +56,17 @@ namespace The_Dojo_League.Controllers
                     Name = model.Name,
                     Level = model.Level,
                     Description = model.Description,
+                    dojo_id = model.dojo_id,
                 };
                 _ninjafactory.AddNewNinja(newNinja);
+                return RedirectToAction("Ninjas");
             }
-            else
-            {
-                return View("Ninjas");
-            }
-            return RedirectToAction("Ninjas");
+            ViewBag.allNinjas = _ninjafactory.GetAllNinjas();
+            ViewBag.allDojos = _dojofactory.GetAllDojos();
+            return View("Ninjas");
         }
         [Route("/Dojo/create")]
-        public IActionResult DojoCreate(DojoViewModel model)
+        public IActionResult DojoCreate(Dojo model)
         {
             if (ModelState.IsValid)
             {
@@ -79,23 +77,21 @@ namespace The_Dojo_League.Controllers
                     Info = model.Info,
                 };
                 _dojofactory.AddNewDojo(newDojo);
+                return RedirectToAction("Dojos");
             }
-            else
-            {
-                return View("Dojos");
-            }
-            return RedirectToAction("Dojos");
+            ViewBag.allDojos = _dojofactory.GetAllDojos();
+            return View("Dojos");
         }
-        [Route("Dojos/{dojoid}/Banish/{ninjaid}")]
+        [Route("Dojo/{dojoid}/Banish/{ninjaid}")]
         public IActionResult Banish(int dojoId, int ninjaId)
         {
-           _dojofactory.Banish(ninjaId);
+            _dojofactory.Banish(ninjaId);
             return RedirectToAction("Dojo", new { id = dojoId });
         }
-        [Route("Dojos/{dojoid}/Recruit/{ninjaid}")]
+        [Route("Dojo/{dojoid}/Recruit/{ninjaid}")]
         public IActionResult Recruit(int dojoId, int ninjaId)
         {
-           _dojofactory.Recruit(dojoId, ninjaId);
+            _dojofactory.Recruit(dojoId, ninjaId);
             return RedirectToAction("Dojo", new { id = dojoId });
         }
     }
